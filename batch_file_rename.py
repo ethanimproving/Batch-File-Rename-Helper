@@ -4,8 +4,24 @@
 
 import subprocess
 
-# Get directory from user.
+Get directory from user.
 path=input('Enter directory to write file in: ')
 
 # Create _list.txt file with list of files in directory.
-subprocess.call(f'cd {path} && dir /b > _list.txt', shell=True)
+textfile = '_list.txt'
+
+subprocess.call(f'cd {path} && dir /b > {textfile}', shell=True)
+
+
+
+# Read contents of file
+with open(textfile, 'r') as infile:
+  # Read first line
+  # first_line = infile.readline().strip()
+
+  # Create a list lines from the textfile.
+  lines = infile.readlines()
+
+# Display each line for testing.
+for line in lines:
+  print(line.strip())
