@@ -3,6 +3,7 @@
 # 5/29/2019
 
 import subprocess
+import xlsxwriter
 
 # Get directory from user.
 path=input('Enter directory to write file in: ')
