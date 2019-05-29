@@ -10,6 +10,9 @@ This application was created more for a handy place to store useful cmd commands
 Ensure you have [Python](https://www.python.org/downloads/windows/ "Python Releases for Windows") installed, then:
 
 ``` bash
+cd venv/Scripts
+activate
+cd ../..
 python batch_file_rename.py
 ```
 
