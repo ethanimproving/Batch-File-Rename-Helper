@@ -29,6 +29,15 @@ for line in lines:
 workbook = xlsxwriter.Workbook(f'{path}/{spreadsheet}')
 worksheet = workbook.add_worksheet()
 
+# Get length of longest line.
+longest_line = len(max(lines, key=len))
+line_length = longest_line/1.025  # Offset for varrying character widths
+cmd_length = line_length + 7.43   # ren "" "" has a cell width of 7.43
+
+# Widen columns to fit lines.
+worksheet.set_column('A:A', line_length)
+worksheet.set_column('D:D', cmd_length)
+
 # Write each line to a new row in column A.
 for line in lines:
   # Create headers.
