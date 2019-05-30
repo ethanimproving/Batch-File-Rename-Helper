@@ -4,6 +4,7 @@
 
 import subprocess
 import xlsxwriter
+import os
 
 # Get directory from user.
 path=input('Enter directory to write file in: ')
@@ -20,6 +21,10 @@ subprocess.call(f'cd {path} && dir /b > {textfile}', shell=True)
 with open(f'{path}/{textfile}', 'r') as infile:
   # Create a list lines from the textfile.
   lines = infile.readlines()
+
+# Delete _list.txt when done reading.
+if os.path.exists(f'{path}/{textfile}'):
+  os.remove(f'{path}/{textfile}')
 
 # Display each line for testing.
 for line in lines:
