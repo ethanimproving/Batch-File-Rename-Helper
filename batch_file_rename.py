@@ -38,5 +38,36 @@ for line in lines:
   # Rename column A with column C.
   worksheet.write(f'D{line_num}', f'=CONCATENATE("ren """,A{line_num},""""," ","""",C{line_num},"""")')
 
+# Insert text into first column.
+example_text = [
+  [
+    'Function',
+    'String',
+    'Output'
+  ],
+  [
+    'Trailing Zeroes: ',
+    '58 - Manliness.mp4',
+    '=TEXT(LEFT(B2,3)+1,"000")&RIGHT(B2,LEN(B2)-2)'
+  ],
+  [
+    'Number from #: ',
+    '#43 "Marching to Zion" (Soul-stirring Songs & Hymns)',
+    '=MID(B3,FIND("#",B3)+1,FIND("""",B3)-FIND("#",B3)-2)+0'
+  ],
+  [
+    'String from "": ',
+    '#43 "Marching to Zion" (Soul-stirring Songs & Hymns)',
+    '=MID(B4,FIND("""",B4)+1,FIND("""",B4,FIND("""",B4)+1)-FIND("""",B4)-1)'
+  ]
+]
+
+# Insert the example_text table into Excel.
+for row in example_text:
+  line_num = example_text.index(row)+1
+  example.write(f'A{line_num}', row[0])
+  example.write(f'B{line_num}', row[1])
+  example.write(f'C{line_num}', row[2])
+
 # Close the workbook.
 workbook.close()
