@@ -56,70 +56,85 @@ for line in lines:
 # Create a new spreadsheet to hold example string fuctions.
 example = workbook.add_worksheet('string functions')
 
-# Widen columns to make the text clearer.
-example.set_column('A:A', 16)
-example.set_column('B:B', 48)
-example.set_column('C:C', 18)
+# FROMAT THE WORKSHEET
+# Hide gridlines.
+example.hide_gridlines(option=2)
+# Hide unused rows.
+example.set_default_row(hide_unused_rows=True)
+# Show 7 unused rows and a spacer.
+example.set_row(1, None, None, {'hidden': False})
+for row in range(11, 18):
+  example.set_row(row, None, None, {'hidden': False})
+# Hide all columns past G.
+example.set_column('G:XFD', None, None, {'hidden': True})
+
 
 # Insert text into first column.
 example_text = [
   [
-    'Function',
-    'String',
-    'Output',
-    'Formula'
-  ],
-  [
     'Trailing Zeroes: ',
     '58 - Manliness.mp4',
-    '=TEXT(LEFT(B2,2)+1,"000")&RIGHT(B2,LEN(B2)-2)',
+    '=TEXT(LEFT(C4,2)+1,"000")&RIGHT(C4,LEN(C4)-2)',
     '\'=TEXT(LEFT(text,num_char)+index_offset,"000")&RIGHT(text,LEN(text)num_char)'
   ],
   [
     'Number from #: ',
     '#43 "Marching to Zion" (Soul-stirring Songs & Hymns)',
-    '=MID(B3,FIND("#",B3)+1,FIND("""",B3)-FIND("#",B3)-2)+0',
+    '=MID(C5,FIND("#",C5)+1,FIND("""",C5)-FIND("#",C5)-2)+0',
     '\'=MID(text,FIND(front_character,text)+1,FIND(back_character,text)-FIND(front_character,text)-2)+0'
   ],
   [
     'String from "": ',
     '#43 "Marching to Zion" (Soul-stirring Songs & Hymns)',
-    '=MID(B4,FIND("""",B4)+1,FIND("""",B4,FIND("""",B4)+1)-FIND("""",B4)-1)',
+    '=MID(C6,FIND("""",C6)+1,FIND("""",C6,FIND("""",C6)+1)-FIND("""",C6)-1)',
     '\' =MID(text,FIND(first_occurence,text)+1,FIND(second_occurence,text,FIND(first_occurence,text)+1)-FIND(first_occurence,text)-1)'
   ],
   [
     'Split at character:',
     '011016_Assessment.xlsx',
-    '=LEFT(B5,FIND("_",B5)-1)',
+    '=LEFT(C7,FIND("_",C7)-1)',
     '\'=LEFT(text,FIND(character,text)-1)'
   ],
   [
     'Split at character:',
     '011016_Assessment.xlsx',
-    '=RIGHT(B6,LEN(B6)-FIND("_",B6))',
+    '=RIGHT(C8,LEN(C8)-FIND("_",C8))',
     '\'=RIGHT(text,LEN(text)-FIND(character,text))'
   ],
   [
     'String from ():',
     'Jones (60)',
-    '=MID(B7,SEARCH("(",B7)+1,SEARCH(")",B7)-SEARCH("(",B7)-1)+0',
+    '=MID(C9,SEARCH("(",C9)+1,SEARCH(")",C9)-SEARCH("(",C9)-1)+0',
     '\'=MID(text,SEARCH(first_character,text)+1,SEARCH(second_character,text)-SEARCH(first_character,text)-1)'
   ],
   [
     'nth word:',
     'This is the fourth word.',
-    '=TRIM(MID(SUBSTITUTE(B8," ",REPT(" ",LEN(B8))), (4-1)*LEN(B8)+1, LEN(B8)))',
+    '=TRIM(MID(SUBSTITUTE(C10," ",REPT(" ",LEN(C10))), (4-1)*LEN(C10)+1, LEN(C10)))',
     '\'=TRIM(MID(SUBSTITUTE(text," ",REPT(" ",LEN(text))), (N-1)*LEN(text)+1, LEN(text)))'
   ]
 ]
 
+# Add table caption.
+caption = 'Example String Functions.'
+cell_format = workbook.add_format({'bold': True, 'font_color': '#76933C', 'font_size': 18})
+example.write('B1', caption, cell_format)
+
+# Set the columns widths.
+example.set_column('A:A', 2.29)
+example.set_column('B:B', 17.43)
+example.set_column('C:C', 48.53)
+example.set_column('D:D', 19.29)
+example.set_column('E:E', 119.00)
+
 # Insert the example_text table into Excel.
-for row in example_text:
-  line_num = example_text.index(row)+1
-  example.write(f'A{line_num}', row[0])
-  example.write(f'B{line_num}', row[1])
-  example.write(f'C{line_num}', row[2])
-  example.write(f'E{line_num}', row[3])
+example.add_table('B3:E15', {'data': example_text,
+                             'style': 'Table Style Medium 11',
+                             'columns': [{'header': 'Function'},
+                                         {'header': 'String'},
+                                         {'header': 'Output'},
+                                         {'header': 'Formula'},
+                                         ]})
 
 # Close the workbook.
 workbook.close()
