@@ -26,7 +26,7 @@ for line in lines:
   print(line.strip())
 
 # Create an Excel Spreadsheet.
-workbook = xlsxwriter.Workbook({spreadsheet})
+workbook = xlsxwriter.Workbook(f'{path}/{spreadsheet}')
 worksheet = workbook.add_worksheet()
 
 # Write each line to a new row in column A.
