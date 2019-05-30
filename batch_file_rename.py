@@ -36,22 +36,40 @@ cmd_length = line_length + 7.43   # ren "" "" has a cell width of 7.43
 
 # Widen columns to fit lines.
 worksheet.set_column('A:A', line_length)
-worksheet.set_column('C:C', 10.14)
+worksheet.set_column('C:C', 12.43)
 worksheet.set_column('D:D', cmd_length)
+
+# Format as table
+count = len(lines)+1
+worksheet.add_table(f'A1:D{count}', {'style': 'Table Style Medium 4',
+                             'columns': [{'header': 'Old Name'},
+                                         {'header': 'String'},
+                                         {'header': 'New Name'},
+                                         {'header': 'Command Line'},
+                                         ]})
+
+# FROMAT THE WORKSHEET
+# Hide unused rows.
+worksheet.set_default_row(hide_unused_rows=True)
+# Show 10 unused rows.
+for row in range(count, count+10):
+  worksheet.set_row(row, None, None, {'hidden': False})
+# Hide all columns past G.
+worksheet.set_column('G:XFD', None, None, {'hidden': True})
 
 # Write each line to a new row in column A.
 for line in lines:
-  # Create headers.
-  worksheet.write('A1', 'Old Name')
-  worksheet.write('C1', 'New Name')
-  worksheet.write('D1', 'Command Line')
-
   # Insert our list of lines to column A.
   line_num = lines.index(line)+2
   worksheet.write(f'A{line_num}', line.strip())
 
   # Rename column A with column C.
   worksheet.write(f'D{line_num}', f'=CONCATENATE("ren """,A{line_num},""""," ","""",C{line_num},"""")')
+
+
+
+
+
 
 # Create a new spreadsheet to hold example string fuctions.
 example = workbook.add_worksheet('string functions')
