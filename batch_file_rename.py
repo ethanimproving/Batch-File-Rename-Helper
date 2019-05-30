@@ -26,7 +26,7 @@ for line in lines:
   print(line.strip())
 
 # Create an Excel Spreadsheet.
-workbook = xlsxwriter.Workbook(spreadsheet)
+workbook = xlsxwriter.Workbook({spreadsheet})
 worksheet = workbook.add_worksheet()
 
 # Write each line to a new row in column A.
@@ -37,6 +37,14 @@ for line in lines:
   worksheet.write(f'A{line_num}', line.strip())
   # Rename column A with column C.
   worksheet.write(f'D{line_num}', f'=CONCATENATE("ren """,A{line_num},""""," ","""",C{line_num},"""")')
+
+# Create a new spreadsheet to hold example string fuctions.
+example = workbook.add_worksheet('string functions')
+
+# Widen the first column to make the text clearer.
+example.set_column('A:A', 16)
+example.set_column('B:B', 48)
+example.set_column('C:C', 18)
 
 # Insert text into first column.
 example_text = [
