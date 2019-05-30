@@ -17,7 +17,7 @@ spreadsheet = filename+'.xlsx'
 subprocess.call(f'cd {path} && dir /b > {textfile}', shell=True)
 
 # Read contents of file.
-with open(textfile, 'r') as infile:
+with open(f'{path}/{textfile}', 'r') as infile:
   # Create a list lines from the textfile.
   lines = infile.readlines()
 
