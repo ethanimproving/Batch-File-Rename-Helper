@@ -104,6 +104,12 @@ example_text = [
     'Jones (60)',
     '=MID(B7,SEARCH("(",B7)+1,SEARCH(")",B7)-SEARCH("(",B7)-1)+0',
     '\'=MID(text,SEARCH(first_character,text)+1,SEARCH(second_character,text)-SEARCH(first_character,text)-1)'
+  ],
+  [
+    'nth word:',
+    'This is the fourth word.',
+    '=TRIM(MID(SUBSTITUTE(B8," ",REPT(" ",LEN(B8))), (4-1)*LEN(B8)+1, LEN(B8)))',
+    '\'=TRIM(MID(SUBSTITUTE(text," ",REPT(" ",LEN(text))), (N-1)*LEN(text)+1, LEN(text)))'
   ]
 ]
 
