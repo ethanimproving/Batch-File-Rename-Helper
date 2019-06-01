@@ -3,3 +3,7 @@ _list.xlsx
 .vscode
 \test.py
 \hello.xlsx
+\batch_file_rename.spec
+\build
+\dist
+__pycache__

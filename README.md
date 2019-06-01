@@ -20,6 +20,27 @@ python batch_file_rename.py
 
 `batch_file_rename.py` is our entry point. Use `python batch_file_rename.py` to launch the app.
 
+### Turn the project into an EXE
+
+Make sure your Python Scripts folder is a PATH in your system's Environment Variables:
+
+``` bash
+Environement Variables > Path > Edit > New ..\Python37\Scripts
+```
+
+Install pyinstaller from the command line:
+
+``` bash
+pip install pyinstaller
+pyinstaller
+```
+
+Run a command to compile the py file into an executable, and choose an icon:
+
+``` bash
+pyinstaller -F -i "..\images\favicon.ico" batch_file_rename.py
+```
+
 ## Rename batch files manually
 
 #### 1. Create a list of the files in your directory
