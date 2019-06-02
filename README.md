@@ -1,4 +1,4 @@
-# Batch File Handler
+# Batch File Rename Helper
 **Version 1.0.0**
 
 A simple python application to rename batch files.
@@ -40,6 +40,46 @@ Run a command to compile the py file into an executable, and choose an icon:
 ``` bash
 pyinstaller -F -i "..\images\favicon.ico" batch_file_rename.py
 ```
+
+## Usage
+
+### Generate Your File List
+
+Simply run the program and copy the directory that contains your files into the command console. The program will create a txt file called "_list" that contains a list of all the files in that directory, copy the contents into an excel spreadsheet, and delete the txt file.
+
+![](https://github.com/king-melchizedek/Batch-File-Rename-Helper/raw/master/demos/GenerateFileList.gif)
+
+### Edit In A Spreadsheet
+
+Add whichever excel formulas you need to accomplish your new naming convention.
+
+![](https://github.com/king-melchizedek/Batch-File-Rename-Helper/raw/master/demos/EditWithExcel.gif)
+
+### Use string functions to parse strings
+
+There are a number of example string functions you can alter to suit your needs in the sheet entitles "string functions."
+
+![](https://github.com/king-melchizedek/Batch-File-Rename-Helper/raw/master/demos/UseExampleFunctions.gif)
+
+### Rename with CMD
+
+The syntax for renaming files with the command prompt are as so:
+
+``` bash
+ren [original filename] [new filename]
+```
+
+So in our spreadsheet we are going to create this. In column D, our spreadsheet has this function preloaded into it:
+
+``` bash
+=CONCATENATE("ren """,A2,""""," ","""",C2,"""")
+```
+
+This takes the old name, wraps it in quotes, adds a space, and then wraps the new name in quotes. When we copy the entire column we can simply paste it directly into our command shell.
+
+![](https://github.com/king-melchizedek/Batch-File-Rename-Helper/raw/master/demos/RenameWithCMD.gif)
+
+Shift+Right-Click your directory and select `Open PowerShell window here`, then type `cmd` into the console to access depreciated commands. 
 
 ## Rename batch files manually
 
