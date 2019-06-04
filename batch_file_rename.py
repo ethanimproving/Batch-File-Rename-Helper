@@ -151,8 +151,17 @@ class List:
     # Close the workbook.
     workbook.close()
 
-# Generate a list of files in the directory.
-d = List()
-
-# Generate an excel spreadsheet containing the list of files.
-d.generateWorkbook()
+# Error handling.
+while True:
+  try:
+    # Generate a list of files in the directory.
+    d = List()
+    # Generate an excel spreadsheet containing the list of files.
+    d.generateWorkbook()
+    break
+  except PermissionError:
+    print('Permission Error: Please close _list.xlsx and try again.')
+  except FileNotFoundError:
+    print('Please enter a valid path.')
+  except Exception as e:
+    print(e)
