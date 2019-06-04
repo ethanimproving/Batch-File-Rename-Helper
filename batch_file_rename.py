@@ -2,35 +2,32 @@
 # Ethan Miller
 # 5/29/2019
 
-import subprocess
 import xlsxwriter
 import os
 
-# Get directory from user.
-path=input('Enter directory to write file in: ')
+class List:
+  '''
+  A list of files in the directory.
+  '''
+  def __init__(self):
+    # Get directory from user.
+    pathin=input('Enter directory to write file in: ')
+    # Replace escaape characters with forward slashes.
+    self.path = pathin.replace('\\\\', '/')
+    # Create a list to hold file names.
+    self.lines=[f for f in os.listdir(self.path) if os.path.isfile(os.path.join(self.path, f))]
 
-# Manage file names.
-filename = '_list'
-textfile = filename+'.txt'
-spreadsheet = filename+'.xlsx'
-
-# Create _list.txt file with list of files in directory.
-subprocess.call(f'cd {path} && dir /b > {textfile}', shell=True)
-
-# Read contents of file.
-with open(f'{path}/{textfile}', 'r') as infile:
-  # Create a list lines from the textfile.
-  lines = infile.readlines()
-
-# Delete _list.txt when done reading.
-if os.path.exists(f'{path}/{textfile}'):
-  os.remove(f'{path}/{textfile}')
+# Generate a list of files in the directory.
+d = List()
+lines = d.lines
+path = d.path
 
 # Display each line for testing.
 for line in lines:
   print(line.strip())
 
 # Create an Excel Spreadsheet.
+spreadsheet = '_list.xlsx'
 workbook = xlsxwriter.Workbook(f'{path}/{spreadsheet}')
 worksheet = workbook.add_worksheet()
 
