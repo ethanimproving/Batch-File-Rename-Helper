@@ -9,6 +9,10 @@ This application was created more for a handy place to store useful cmd commands
 
 The easiest way to use Batch File Rename Helper is to download the exe from the [releases](https://github.com/ethanmiller1/Batch-File-Rename-Helper/releases) page.
 
+Note: you may have to unblock it from Windows SmartScreen prevention:
+
+![](https://github.com/ethanmiller1/Batch-File-Rename-Helper/raw/master/images/unblock.png)
+
 ## Get started with Batch File Handler inside Python
 
 Ensure you have [Python](https://www.python.org/downloads/windows/ "Python Releases for Windows") installed, then:
