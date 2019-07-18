@@ -5,15 +5,25 @@ A simple python application to rename batch files.
 
 This application was created more for a handy place to store useful cmd commands than using Python to handle it for you. Check out the tutorials to see what this app is doing under the hood.
 
-## Get started with Batch File Handler
+## Download Batch File Handler
+
+The easiest way to use Batch File Rename Helper is to download the exe from the [releases](https://github.com/ethanmiller1/Batch-File-Rename-Helper/releases) page.
+
+## Get started with Batch File Handler inside Python
 
 Ensure you have [Python](https://www.python.org/downloads/windows/ "Python Releases for Windows") installed, then:
 
 ``` bash
-cd venv/Scripts
-activate
-cd ../..
-python batch_file_rename.py
+# Activate command prompt if using powershell
+$ cmd
+# Create a virtual environment
+$ python -m venv venv
+# Activate your virtual environment
+$ cd venv/Scripts && activate && cd ../..
+# Install dependencies to venv
+$ pip install -r requirements.txt
+# Run the program
+$ python batch_file_rename.py
 ```
 
 ### Entry Point
